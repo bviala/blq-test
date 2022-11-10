@@ -1,23 +1,15 @@
 import { useState } from 'react'
-import classes from './App.module.css'
-import Header from './Header'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import Main from './components/Main/Main'
 
 const App = () => {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <h1 className={classes.h1}>Vite + React</h1>
+    <>
       <Header />
-      <div className={classes.card}>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </div>
+      <Main />
+      <Footer />
+    </>
   )
 }
 

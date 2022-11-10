@@ -1,0 +1,25 @@
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--header-height);
+    border-bottom: 1px solid grey;
+    display: flex;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    text-transform: uppercase;
+    margin-left: 5rem;
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        justify-content: center;
+    }
+    .header h1 {
+        margin-left: 0;
+    }
+}
