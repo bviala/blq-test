@@ -4,7 +4,7 @@
     right: 0;
     left: 0;
     height: var(--header-height);
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
 }
