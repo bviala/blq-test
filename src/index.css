@@ -52,6 +52,10 @@ button, input[type=submit] {
   transition: border-color 0.25s;
 }
 
+button:disabled, input[type=submit]:disabled {
+  background-color: rgba(49, 53, 124, 0.7)
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

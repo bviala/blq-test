@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import useFakeAuth from '../../api/fakeAuth'
 
 type InviteRequestModalProps = {
 }
@@ -27,17 +28,27 @@ const InviteRequestModal = ({}: InviteRequestModalProps) => {
         }
     })
 
+    const { fakeAuth, error, isPending } = useFakeAuth()
+
+    const submitRequest = (inputs: Inputs) => {
+        fakeAuth({
+            name: inputs.fullName,
+            email: inputs.email
+        })
+    }
+
     return (
         <>
             <h1>Request an invite</h1>
-            <form onSubmit={handleSubmit(d => console.log(d))}>
+            <form onSubmit={handleSubmit(submitRequest)}>
                 <input {...register('fullName')} placeholder="Full name" />
                 <p className='input-error'>{errors.fullName?.message}</p>
                 <input {...register('email')} placeholder="Email" />
                 <p className='input-error'>{errors.email?.message}</p>
                 <input {...register('emailConfirmation')} placeholder="Confirm Email" />
                 <p className='input-error'>{errors.emailConfirmation?.message}</p>
-                <input type="submit"/>
+                <input type="submit" disabled={isPending} value={isPending ? 'Sending, please wait...' :  'Submit'} />
+                <p className='input-error'>{ error }</p>
             </form>
         </>
     )
