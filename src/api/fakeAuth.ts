@@ -7,6 +7,7 @@ type FakeAuthPayload = {
 
 const useFakeAuth = () => {
     const [isPending, setIsPending] = useState(false)
+    const [isSuccess, setIsSuccess] = useState(false)
     const [error, setError] = useState('')
 
     const fakeAuth = async (request: FakeAuthPayload) => {
@@ -23,6 +24,8 @@ const useFakeAuth = () => {
             if (!response.ok) {
                 const { errorMessage } = await response.json()
                 throw new Error(errorMessage)
+            } else {
+                setIsSuccess(true)
             }
         } catch(error) {
             let errorMessage = 'unknown error'
@@ -33,7 +36,7 @@ const useFakeAuth = () => {
         }
     }
 
-    return { fakeAuth, isPending, error }
+    return { fakeAuth, isPending, isSuccess, error }
 }
 
 export default useFakeAuth

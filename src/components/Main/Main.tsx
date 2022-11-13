@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import ReactModal from 'react-modal'
 import InviteRequestModal from '../InviteRequestModal/InviteRequestModal'
+import SuccessModal from '../SuccessModal/SuccessModal'
 import classes from './Main.module.css'
 
 const Main = () => {
     const [isInviteRequestModalOpen, setInviteRequestModalOpen] = useState(false)
+    const [isSuccessModalOpen, setSuccessModalOpen] = useState(false)
+
+    const onRequestSuccess = () => {
+        setInviteRequestModalOpen(false)
+        setSuccessModalOpen(true)
+    }
 
     return (
         <main className={classes.main}>
@@ -17,7 +24,15 @@ const Main = () => {
                 className={'modal-content'}
                 overlayClassName={'modal-bg'}
             >
-                <InviteRequestModal />
+                <InviteRequestModal onRequestSuccess={onRequestSuccess} />
+            </ReactModal>
+            <ReactModal
+                isOpen={isSuccessModalOpen}
+                onRequestClose={() => setSuccessModalOpen(false)}
+                className={'modal-content'}
+                overlayClassName={'modal-bg'}
+            >
+                <SuccessModal onClose={() => setSuccessModalOpen(false)} />
             </ReactModal>
         </main>
     )

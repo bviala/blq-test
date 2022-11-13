@@ -2,8 +2,10 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import useFakeAuth from '../../api/fakeAuth'
+import { useEffect } from 'react'
 
 type InviteRequestModalProps = {
+    onRequestSuccess: () => void
 }
 
 type Inputs = {
@@ -18,7 +20,7 @@ const schema = yup.object().shape({
     emailConfirmation: yup.string().label('Confirm email').required().oneOf([yup.ref('email')], 'Email does not match')
 }).required()
 
-const InviteRequestModal = ({}: InviteRequestModalProps) => {
+const InviteRequestModal = ({ onRequestSuccess }: InviteRequestModalProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -28,7 +30,13 @@ const InviteRequestModal = ({}: InviteRequestModalProps) => {
         }
     })
 
-    const { fakeAuth, error, isPending } = useFakeAuth()
+    const { fakeAuth, error, isPending, isSuccess } = useFakeAuth()
+
+    useEffect(() => {
+        if(isSuccess) {
+            onRequestSuccess()
+        }
+    }, [isSuccess])
 
     const submitRequest = (inputs: Inputs) => {
         fakeAuth({

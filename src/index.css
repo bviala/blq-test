@@ -7,7 +7,7 @@
   --grey: #383943;
   --border-color: var(--primary-color);
 
-  color: var(--gre);
+  color: var(--grey);
   background-color: #ffffff;
 
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
