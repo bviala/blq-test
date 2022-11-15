@@ -49,13 +49,33 @@ const InviteRequestModal = ({ onRequestSuccess }: InviteRequestModalProps) => {
         <>
             <h1>Request an invite</h1>
             <form onSubmit={handleSubmit(submitRequest)}>
-                <input {...register('fullName')} placeholder="Full name" />
+                <input
+                    {...register('fullName')}
+                    placeholder="Full name"
+                    data-testid="full-name-input"
+                    />
                 <p className='input-error'>{errors.fullName?.message}</p>
-                <input {...register('email')} placeholder="Email" />
+
+                <input
+                    {...register('email')}
+                    placeholder="Email"
+                    data-testid="email-input"
+                    />
                 <p className='input-error'>{errors.email?.message}</p>
-                <input {...register('emailConfirmation')} placeholder="Confirm Email" />
+
+                <input
+                    {...register('emailConfirmation')}
+                    placeholder="Confirm Email"
+                    data-testid="email-confirmation-input"
+                />
                 <p className='input-error'>{errors.emailConfirmation?.message}</p>
-                <input type="submit" disabled={isPending} value={isPending ? 'Sending, please wait...' :  'Submit'} />
+
+                <input
+                    type="submit"
+                    disabled={isPending}
+                    value={isPending ? 'Sending, please wait...' :  'Submit'}
+                    data-testid="submit-request-button"
+                />
                 <p className='input-error'>{ error }</p>
             </form>
         </>
