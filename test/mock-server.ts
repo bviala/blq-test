@@ -11,4 +11,4 @@ const handlers = [
 ]
 
 const mockServer = setupServer(...handlers)
-export {mockServer, rest}
+export {mockServer, rest, apiURL}
