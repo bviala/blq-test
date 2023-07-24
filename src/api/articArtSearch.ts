@@ -17,7 +17,7 @@ const useArticSearch = () => {
     const ArticSearch = async (request: string) => {
         setIsPending(true)
         try {
-            const response = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${request}&limit=1&fields=image_id`)
+            const response = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${request}&limit=3&fields=image_id`)
             if (!response.ok) {
                 const { errorMessage } = await response.json()
                 throw new Error(errorMessage)

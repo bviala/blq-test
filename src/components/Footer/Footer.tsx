@@ -4,10 +4,7 @@ const Footer = () => {
     return (
     <footer className={classes.footer}>
         <p>
-            Made with 🤪 in Melbourne.
-        </p>
-        <p>
-            &#169; 2022 Broccolo & Co. All bites reserved.
+            This is not a footer.
         </p>
     </footer>
     )

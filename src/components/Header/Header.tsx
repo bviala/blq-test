@@ -4,7 +4,7 @@ const Header = () => {
     return (
     <header className={classes.header}>
         <h1 className='primary--text'>
-            Brocollo & Co.
+            artexp
         </h1>
     </header>
     )
