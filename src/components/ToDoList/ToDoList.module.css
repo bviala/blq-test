@@ -1,8 +1,0 @@
-.task-form {
-    display: flex;
-    margin-bottom: 1rem;
-}
-
-.task-form input:not(:last-child) {
-    margin-right: 1rem;
-}
