@@ -15,7 +15,7 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
     return (
         <main className={classes.main}>
             <form onSubmit={handleSubmit}>
-                <input onChange={event => setSearchQuery(event.target.value)} type='text'/>
+                <input autoFocus onChange={event => setSearchQuery(event.target.value)} type='text'/>
                 <input type='submit' value={`show me ${searchQuery}`} />
             </form>
 
