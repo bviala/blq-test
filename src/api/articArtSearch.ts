@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+const NUMBER_OF_ARTWORK_REQUESTED = 3;
+
 type ArtItem = {
     id: string
     image_id: string
@@ -16,8 +18,16 @@ const useArticSearch = () => {
 
     const ArticSearch = async (request: string) => {
         setIsPending(true)
+
+        const urlQueryParams = {
+            q: request,
+            limit: NUMBER_OF_ARTWORK_REQUESTED.toString(),
+            fields: 'id, image_id',
+            'query[exists][field]': 'image_id' // API to only return artworks with existing 
+        }
+
         try {
-            const response = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${request}&limit=3&fields=image_id`)
+            const response = await fetch('https://api.artic.edu/api/v1/artworks/search?' + new URLSearchParams(urlQueryParams).toString())
             if (!response.ok) {
                 const { errorMessage } = await response.json()
                 throw new Error(errorMessage)
