@@ -1,9 +1,8 @@
 import useArticSearch from '../../api/articArtSearch'
-import useSmkArtSearch from '../../api/smkArtSearch'
-import classes from './Main.module.css'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
+import classes from './App.module.css'
 
-const Main = () => {
+const App = () => {
 const { isPending, error, smkArtSearch, result } = useArticSearch()
 
     const [searchQuery, setSearchQuery] = useState<string>('')
@@ -12,8 +11,6 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
         event.preventDefault()
         smkArtSearch(searchQuery)
     }
-
-    
     
     return (
         <main className={classes.main}>
@@ -35,4 +32,4 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
     )
 }
 
-export default Main
+export default App
