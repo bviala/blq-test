@@ -19,7 +19,7 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
                 <input type='submit' value={`show me ${searchQuery}`} />
             </form>
 
-            {isPending ? (<p>pending</p>) : error ? (<p>{error}</p>) : (
+            {isPending ? (<p>pending</p>) : error ? (<p className='error--text'>{error}</p>) : (
                 result.map((item, index) => (
                     <div key={index}>
                         <img alt={item.id} src={item.image_src}/>

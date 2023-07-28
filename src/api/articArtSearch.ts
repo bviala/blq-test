@@ -30,20 +30,24 @@ const useArticSearch = () => {
         }
 
         try {
-            const response = await fetch('https://api.artic.edu/api/v1/artworks/search?' + new URLSearchParams(urlQueryParams).toString())
-            if (!response.ok) {
-                const { errorMessage } = await response.json()
-                throw new Error(errorMessage)
+            const responseStream = await fetch('https://api.artic.edu/api/v1/artworks/search?' + new URLSearchParams(urlQueryParams).toString())
+            
+            if (!responseStream.ok) {
+                throw new Error(`${responseStream.status}: ${responseStream.statusText}`)
             }
-            const responseResult = await response.json() as ArticSearchApiResponse
-            const _result = responseResult.data.map(artwork => ({
+
+            const response = await responseStream.json() as ArticSearchApiResponse
+            
+            const _result = response.data.map(artwork => ({
                 ...artwork,
                 image_src: `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`
             }))
             setResult(_result)
         } catch(error) {
-            let errorMessage = 'unknown error'
-            if (error instanceof Error) errorMessage = error.message
+            console.error(error);
+
+            const errorMessage = error instanceof Error ? error.message : 'An unknown error occured'
+            
             setError(errorMessage)
         } finally {
             setIsPending(false)
