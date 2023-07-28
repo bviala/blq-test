@@ -16,10 +16,10 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
         <main className={classes.main}>
             <form onSubmit={handleSubmit}>
                 <input autoFocus onChange={event => setSearchQuery(event.target.value)} type='text' placeholder='eg. blue'/>
-                <input type='submit' value={`show me ${searchQuery}`} />
+                <input type='submit' value={isPending ? `looking for ${searchQuery}...` : 'search'} disabled={isPending} />
             </form>
 
-            {isPending ? (<p>pending</p>) : error ? (<p className='error--text'>{error}</p>) : (
+            {error ? (<p className='error--text'>{error}</p>) : (
                 result.map((item, index) => (
                     <div key={index}>
                         <img alt={item.id} src={item.image_src}/>
