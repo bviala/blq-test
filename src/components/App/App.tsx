@@ -15,16 +15,14 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
     return (
         <main className={classes.main}>
             <form onSubmit={handleSubmit}>
-                <input autoFocus onChange={event => setSearchQuery(event.target.value)} type='text'/>
+                <input autoFocus onChange={event => setSearchQuery(event.target.value)} type='text' placeholder='eg. blue'/>
                 <input type='submit' value={`show me ${searchQuery}`} />
             </form>
 
-
             {isPending ? (<p>pending</p>) : error ? (<p>{error}</p>) : (
-                result?.data.map((item, index) => (
+                result.map((item, index) => (
                     <div key={index}>
-                        {item.id}
-                        <img src={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}/>
+                        <img alt={item.id} src={item.image_src}/>
                     </div>
                 ))
             )}
