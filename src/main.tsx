@@ -5,26 +5,38 @@ import ReactModal from 'react-modal'
 import './index.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+
+const AppLayout = () => (
+  <>
+    <Header/>
+    <main>
+      <Outlet />
+    </main>
+    <Footer/>
+  </>
+)
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (<Home/>),
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
+    element: (<AppLayout/>),
+    children: [
+      {
+        index: true,
+        element: (<Home/>),
+      },
+      {
+        path: "collection",
+        element: <div>collection</div>,
+      },
+    ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Header/>
-    <main>
       <RouterProvider router={router} />
-    </main>
-    <Footer/>
   </React.StrictMode>
 )
 
