@@ -21,7 +21,7 @@ const { isPending, error, smkArtSearch, result } = useArticSearch()
 
             {error ? (<p className='error--text'>{error}</p>) : (
                 result.map((item, index) => (
-                    <div key={index}>
+                    <div className={classes.artwork} key={index}>
                         <img alt={item.id} src={item.image_src}/>
                     </div>
                 ))
