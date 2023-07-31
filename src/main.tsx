@@ -6,6 +6,7 @@ import './index.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import Collection from './components/Collection/Collection'
 
 const AppLayout = () => (
   <>
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "collection",
-        element: <div>collection</div>,
+        element: <Collection/>,
       },
     ]
   },

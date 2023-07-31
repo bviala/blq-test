@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react'
 import classes from './Home.module.css'
 
 const App = () => {
-const { isPending, error, smkArtSearch, result } = useArticSearch()
+    const { isPending, error, smkArtSearch, result } = useArticSearch()
 
     const [searchQuery, setSearchQuery] = useState<string>('')
 

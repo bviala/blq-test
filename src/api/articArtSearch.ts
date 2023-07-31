@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Artwork, ArtworkSource } from "./collection";
 
 const NUMBER_OF_ARTWORK_REQUESTED = 3;
 
@@ -11,6 +12,21 @@ type ArticArtwork = {
 type ArticSearchApiResponse = {
     data: ArticArtwork[]
 }
+
+const articArtworkMapper = (artwork: ArticArtwork): Artwork => {
+    return {
+        source: ArtworkSource.Artic,
+        id: artwork.id,
+        imageId: artwork.image_id
+    }
+}
+
+/* const getImageSrc = (artwork: Artwork) => {
+    switch (artwork.source) {
+        case ArtworkSource.Artic:
+            return `https://www.artic.edu/iiif/2/${artwork.imageId}/full/843,/0/default.jpg`
+    }
+} */
 
 const useArticSearch = () => {
     const [isPending, setIsPending] = useState(false)
