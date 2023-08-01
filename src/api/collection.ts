@@ -25,7 +25,7 @@ const addToCollection = async (artwork: Artwork) => {
     }
 }
 
-const useGetCollection = () => {
+const useCollection = () => {
     const [collection, setCollection] = useState<Artwork[]>([])
 
     const getCollection = async () => {
@@ -39,7 +39,28 @@ const useGetCollection = () => {
         }
     }
 
-    return { collection, getCollection }
+    const removeArtworkFromCollection = async (artworkIndex: number) => {
+        try {
+            await fetch(`${import.meta.env.VITE_API_BASE_URL}/collection`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    source: collection[artworkIndex].source,
+                    id: collection[artworkIndex].id
+                })
+            })
+            setCollection([
+                ...collection.slice(0, artworkIndex),
+                ...collection.slice(artworkIndex + 1)
+            ])
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    return { collection, getCollection, removeArtworkFromCollection }
 }
 
-export { addToCollection, useGetCollection }
+export { addToCollection, useCollection }

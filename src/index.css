@@ -70,6 +70,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+button.button--danger {
+  background-color: var(--error-color);
+  color: white;
+}
+
+button.button--white {
+  background-color: white;
+  color: var(--primary-color);
+}
+
 .primary--text {
   color: var(--primary-color);
 }
@@ -99,7 +109,7 @@ button:focus-visible {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 12px;
+  border-radius: 4px;
   max-width: 500px;
   width: 100%;
   padding: 2rem;
