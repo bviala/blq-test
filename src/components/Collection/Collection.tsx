@@ -1,7 +1,6 @@
 import { useEffect } from "react"
-import { useGetCollection } from '../../api/collection'
-import ArtworkList from "../ArtworkList/ArtworkList"
-
+import { Artwork, useGetCollection } from '../../api/collection'
+import classes from './Collection.module.css'
 
 const Collection = () => {
     const { collection, getCollection } = useGetCollection()
@@ -10,8 +9,16 @@ const Collection = () => {
         getCollection()
     }, [])
 
+    const handleImageDoubleClick = (artwork: Artwork, index: number) => {
+
+    }
+
     return (<>
-        <ArtworkList artworks={collection} />
+        {collection.map((artwork, index) => (
+            <div className={classes.artwork} key={index} onDoubleClick={() => handleImageDoubleClick(artwork, index)}>
+                <img alt={artwork.id} src={artwork.imageSrc}/>
+            </div>
+        ))}
     </>)
 }
 

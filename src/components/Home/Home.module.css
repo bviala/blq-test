@@ -1,3 +1,33 @@
 .search-form input {
     margin-bottom: 1rem;
 }
+
+.artwork {
+    position: relative;
+}
+
+.artwork img {
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.heart-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 3rem;
+    fill: transparent;
+    transition: fill 0.5s;
+}
+
+.heart-icon--active {
+    animation: save 0.5s;
+    fill:red;
+}
+
+@keyframes save {
+    0%   { transform: translate(-50%, -50%) scale(1); }
+    90%   { transform: translate(-50%, -50%) scale(1.3); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
