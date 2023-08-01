@@ -1,8 +1,3 @@
 .search-form input {
     margin-bottom: 1rem;
 }
-
-.artwork img {
-    max-width: 100%;
-    cursor: pointer;
-}

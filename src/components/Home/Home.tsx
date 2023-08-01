@@ -2,15 +2,16 @@ import useArticSearch from '../../api/articArtSearch'
 import { FormEvent, useState } from 'react'
 import classes from './Home.module.css'
 import { Artwork, addToCollection } from '../../api/collection'
+import ArtworkList from '../ArtworkList/ArtworkList'
 
 const App = () => {
-    const { isPending, error, smkArtSearch, result: artworkList } = useArticSearch()
+    const { isPending, error, articSearch, artworks } = useArticSearch()
 
     const [searchQuery, setSearchQuery] = useState<string>('')
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
-        smkArtSearch(searchQuery)
+        articSearch(searchQuery)
     }
 
     const handleImageDoubleClick = (artwork: Artwork) => {
@@ -24,11 +25,7 @@ const App = () => {
         </form>
 
         {error ? (<p className='error--text'>{error}</p>) : (
-            artworkList.map((item, index) => (
-                <div onDoubleClick={() => handleImageDoubleClick(item)} className={classes.artwork} key={index}>
-                    <img alt={item.id} src={item.imageSrc}/>
-                </div>
-            ))
+            <ArtworkList artworks={artworks} handleImageDoubleClick={handleImageDoubleClick} />
         )}
     </>)
 }

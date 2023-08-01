@@ -25,7 +25,7 @@ const useArticSearch = () => {
     const [artworks, setArtworks] = useState<Artwork[]>([])
     const [error, setError] = useState('')
 
-    const ArticSearch = async (request: string) => {
+    const articSearch = async (request: string) => {
         setError('')
         setArtworks([])
         setIsPending(true)
@@ -58,7 +58,7 @@ const useArticSearch = () => {
             setIsPending(false)
         }
     }
-    return { isPending, error, smkArtSearch: ArticSearch, result: artworks }
+    return { isPending, error, articSearch, artworks }
 }
 
 export default useArticSearch

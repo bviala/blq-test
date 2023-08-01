@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useGetCollection } from '../../api/collection'
+import ArtworkList from "../ArtworkList/ArtworkList"
 
 
 const Collection = () => {
@@ -10,11 +11,7 @@ const Collection = () => {
     }, [])
 
     return (<>
-        {collection.map(artwork => (
-        <div key={artwork.id + artwork.source}>
-            {`${artwork.id}, ${artwork.source}, ${artwork.imageSrc}`}
-        </div>
-        ))}
+        <ArtworkList artworks={collection} />
     </>)
 }
 
