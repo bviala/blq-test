@@ -6,15 +6,13 @@ const Collection = () => {
     const { collection, getCollection } = useGetCollection()
 
     useEffect(() => {
-        console.log('lol');
-        
         getCollection()
     }, [])
 
     return (<>
         {collection.map(artwork => (
         <div key={artwork.id + artwork.source}>
-            {`${artwork.id}, ${artwork.source}, ${artwork.imageId}`}
+            {`${artwork.id}, ${artwork.source}, ${artwork.imageSrc}`}
         </div>
         ))}
     </>)

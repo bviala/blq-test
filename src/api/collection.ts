@@ -1,14 +1,14 @@
 import { useState } from "react"
 
 export enum ArtworkSource {
-    Artic,
-    Smk
+    ARTIC = 'artic',
+    SMK = 'smk'
   }
 
 export type Artwork = {
     source: ArtworkSource,
     id: string,
-    imageId: string
+    imageSrc: string
 }
 
 const addToCollection = async (artwork: Artwork) => {
@@ -30,7 +30,6 @@ const useGetCollection = () => {
 
     const getCollection = async () => {
         try {
-            console.log("lul");
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/collection`)
             const json = await response.json()
             

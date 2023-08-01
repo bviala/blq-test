@@ -6,7 +6,6 @@ const NUMBER_OF_ARTWORK_REQUESTED = 3;
 type ArticArtwork = {
     id: string
     image_id: string
-    image_src?: string
 }
 
 type ArticSearchApiResponse = {
@@ -15,27 +14,20 @@ type ArticSearchApiResponse = {
 
 const articArtworkMapper = (artwork: ArticArtwork): Artwork => {
     return {
-        source: ArtworkSource.Artic,
-        id: artwork.id,
-        imageId: artwork.image_id
+        source: ArtworkSource.ARTIC,
+        id: artwork.id.toString(),
+        imageSrc: `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`
     }
 }
 
-/* const getImageSrc = (artwork: Artwork) => {
-    switch (artwork.source) {
-        case ArtworkSource.Artic:
-            return `https://www.artic.edu/iiif/2/${artwork.imageId}/full/843,/0/default.jpg`
-    }
-} */
-
 const useArticSearch = () => {
     const [isPending, setIsPending] = useState(false)
-    const [result, setResult] = useState<ArticArtwork[]>([])
+    const [artworks, setArtworks] = useState<Artwork[]>([])
     const [error, setError] = useState('')
 
     const ArticSearch = async (request: string) => {
         setError('')
-        setResult([])
+        setArtworks([])
         setIsPending(true)
 
         const urlQueryParams = {
@@ -54,11 +46,8 @@ const useArticSearch = () => {
 
             const response = await responseStream.json() as ArticSearchApiResponse
             
-            const _result = response.data.map(artwork => ({
-                ...artwork,
-                image_src: `https://www.artic.edu/iiif/2/${artwork.image_id}/full/843,/0/default.jpg`
-            }))
-            setResult(_result)
+            const artworks = response.data.map(articArtworkMapper)
+            setArtworks(artworks)
         } catch(error) {
             console.error(error);
 
@@ -69,7 +58,7 @@ const useArticSearch = () => {
             setIsPending(false)
         }
     }
-    return { isPending, error, smkArtSearch: ArticSearch, result }
+    return { isPending, error, smkArtSearch: ArticSearch, result: artworks }
 }
 
 export default useArticSearch
